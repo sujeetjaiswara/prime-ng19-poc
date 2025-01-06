@@ -1,4 +1,9 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MenuItem, MessageService } from 'primeng/api';
@@ -32,11 +37,13 @@ import { ToastModule } from 'primeng/toast';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
 export class AppComponent {
   #primeng = inject(PrimeNG);
   #messageService = inject(MessageService);
+  #cd = inject(ChangeDetectorRef);
   date: Date | undefined;
   rangeDates: Date[] | undefined;
   value!: number;
@@ -44,6 +51,7 @@ export class AppComponent {
   items: MenuItem[] = [];
   visible: boolean = false;
   isVisibleDialog: boolean = false;
+  chartTheme = 'light1';
 
   chartOptions = {
     title: {
@@ -73,7 +81,7 @@ export class AppComponent {
         ],
       },
     ],
-    theme: 'dark1', //"light1", "dark1", "dark2"
+    theme: this.chartTheme, //"light1", "dark1", "dark2"
   };
 
   constructor() {
@@ -127,5 +135,9 @@ export class AppComponent {
   toggleDarkMode() {
     const element: any = document.querySelector('html');
     element.classList.toggle('my-app-dark');
+
+    this.chartTheme = this.chartTheme === 'light1' ? 'dark1' : 'light1';
+    this.chartOptions.theme = this.chartTheme;
+    this.#cd.markForCheck();
   }
 }
