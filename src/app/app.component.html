@@ -41,6 +41,10 @@
     <!-- Show dialog -->
     <p-button (click)="showDialog()" label="Edit Profile" />
   </div>
+
+  <div class="md:w-[50rem] mt-4">
+    <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+  </div>
 </div>
 
 <p-dialog

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MenuItem, MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
@@ -27,6 +28,7 @@ import { ToastModule } from 'primeng/toast';
     AvatarModule,
     Dialog,
     InputTextModule,
+    CanvasJSAngularChartsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -42,6 +44,37 @@ export class AppComponent {
   items: MenuItem[] = [];
   visible: boolean = false;
   isVisibleDialog: boolean = false;
+
+  chartOptions = {
+    title: {
+      text: 'Angular Column Chart with Index Labels',
+    },
+    animationEnabled: true,
+    axisY: {
+      includeZero: true,
+    },
+    data: [
+      {
+        type: 'column', //change type to bar, line, area, pie, etc
+        //indexLabel: "{y}", //Shows y value on all Data Points
+        indexLabelFontColor: '#5A5757',
+        color: '#8E24AA',
+        dataPoints: [
+          { x: 10, y: 71 },
+          { x: 20, y: 55 },
+          { x: 30, y: 50 },
+          { x: 40, y: 65 },
+          { x: 50, y: 71 },
+          { x: 60, y: 92, indexLabel: 'Highest\u2191' },
+          { x: 70, y: 68 },
+          { x: 80, y: 38, indexLabel: 'Lowest\u2193' },
+          { x: 90, y: 54 },
+          { x: 100, y: 60 },
+        ],
+      },
+    ],
+    theme: 'dark1', //"light1", "dark1", "dark2"
+  };
 
   constructor() {
     this.#primeng.ripple.set(true);
