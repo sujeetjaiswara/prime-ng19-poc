@@ -9,6 +9,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MenuItem, MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 import { PrimeNG } from 'primeng/config';
 import { DatePickerModule } from 'primeng/datepicker';
 import { Dialog } from 'primeng/dialog';
@@ -34,6 +35,7 @@ import { ToastModule } from 'primeng/toast';
     Dialog,
     InputTextModule,
     CanvasJSAngularChartsModule,
+    CheckboxModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -52,6 +54,7 @@ export class AppComponent {
   visible: boolean = false;
   isVisibleDialog: boolean = false;
   chartTheme = 'light1';
+  checked: boolean = false;
 
   chartOptions = {
     title: {

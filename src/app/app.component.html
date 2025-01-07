@@ -1,6 +1,11 @@
 <div class="container mx-auto w-11/12 p-6">
   <div class="flex flex-col gap-4">
-    <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()" />
+    <p-button label="Toggle theme" class="me-2" (onClick)="toggleDarkMode()" />
+
+    <div class="flex items-center leading-none">
+      <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="ny" />
+      <label for="ny" class="ml-2">New York</label>
+    </div>
 
     <p-button label="Check" />
 
